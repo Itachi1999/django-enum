@@ -9,10 +9,10 @@ from enum import Enum, verify, UNIQUE
     
 @verify(UNIQUE)
 class Year(Enum):
-    FRESHMAN = 1
-    SOPHOMORE = 2
-    JUNIOR = 3
-    SENIOR = 4
+    FRESHMAN = "Freshman"
+    SOPHOMORE = "Sophomore"
+    JUNIOR = "Junior"
+    SENIOR = "Senior"
 
 @verify(UNIQUE)
 class Mathematics(Enum):
