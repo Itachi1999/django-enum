@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Index Page
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="display-1 text-center">
+        Enum App
+    </h1>
+    <br>
+    <figure class="text-center">
+        <blockquote class="blockquote">
+            <p>I believe that at the end of the century the use of words and general educated opinion will have altered so much that one will be able to speak of machines thinking without expecting to be contradicted.</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            Alan Turing in <cite title="Source Title">The Imitation Game</cite>
+        </figcaption>
+      </figure>
+</div>
+{% comment %} <div class="container"></div> {% endcomment %}
+<br>
+<br>
+<div class="container">
+    <div class="card text-center w-50 rounded mx-auto">
+        <div class="card-header">
+            Featured
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                Special title treatment
+            </h5>
+            <p class="card-text">
+                With supporting text below as a natural lead-in to additional content.
+            </p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+        <div class="card-footer text-body-secondary">
+            2 days ago
+        </div>
+      </div>
+</div>
+{% endblock %}
