@@ -7,6 +7,17 @@ Index Page
 
 {% block content %}
 <div class="container">
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div {% if message.tags %} class="alert alert-{{ message.tags }} position-relative"{% endif %} role="alert">
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                    {{ message }}
+                    <button type="button" class="btn-close position-absolute end-0" data-bs-dismiss="alert" aria-label="Close"></button>   
+                </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <h1 class="display-1 text-center">
         Enum App
     </h1>
@@ -29,16 +40,56 @@ Index Page
             Featured
         </div>
         <div class="card-body">
-            <h5 class="card-title">
-                Special title treatment
-            </h5>
-            <p class="card-text">
-                With supporting text below as a natural lead-in to additional content.
-            </p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h4 class="card-title">
+                Student Registration Form
+            </h4>
+
+            <br>
+            <form action="{% url "app:index" %}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-4">
+                        Name
+                    </div>
+                    <div class="col-8">
+                        <input class="form-control" type="text" placeholder="Full Name" name="name">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-4">
+                        Year
+                    </div>
+                    <div class="col-8">
+                        <select class="form-select" aria-label="Default select example" name="year">
+                            {% for yr in year %}
+                                <option value="{{yr.name}}">{{yr.value}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-4">
+                        Subject
+                    </div>
+                    <div class="col-8">
+                        <select class="form-select" aria-label="Default select example" name="subject">
+                            {% for domain, subs in subjects.items %}
+                                {% for sub in subs %}
+                                    <option value="{{domain}}-{{sub.name}}">{{domain}}: {{sub.value}}</option>
+                                {% endfor %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            
         </div>
         <div class="card-footer text-body-secondary">
-            2 days ago
+            {% now "l, F j, Y g:i A" %}.
         </div>
       </div>
 </div>

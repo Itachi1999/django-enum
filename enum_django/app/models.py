@@ -11,7 +11,10 @@ class Student(models.Model):
     edited_on = models.DateTimeField(auto_now = True)
     
     name = models.CharField(max_length = 200, default = "John Doe")
-    year = models.CharField(max_length = 20, choices = YEAR_CHOICES, default = Year.FRESHMAN.value)
+    year = models.CharField(max_length = 20, choices = YEAR_CHOICES, default = Year.FRESHMAN.name)
+    
+    def __str__(self) -> str:
+        return self.name
 
 class SubjectClass(models.Model):
     DOMAIN_CHOICES = [(domain.name, domain.value.__name__) for domain in Subjects]
@@ -24,8 +27,8 @@ class SubjectClass(models.Model):
     edited_on = models.DateTimeField(auto_now = True)
     
     domain = models.CharField(max_length = 30, choices = DOMAIN_CHOICES, default = Subjects.CS.value.__name__)
-    subject = models.CharField(max_length = 50, choices = SUBJECT_CHOICES, default = Subjects.CS.value.DL.value)
-    student = models.ForeignKey(Student, related_name = "classes", on_delete = models.CASCADE, null = True)
+    subject = models.CharField(max_length = 50, choices = SUBJECT_CHOICES, default = Subjects.CS.value.DL.name)
+    students = models.ManyToManyField(Student, related_name = "students")
     
     
     
